@@ -4,6 +4,7 @@ const path = require("node:path");
 
 require("dotenv").config({ quiet: true });
 
+
 const bcrypt = require("bcryptjs");
 const Database = require("better-sqlite3");
 const express = require("express");
