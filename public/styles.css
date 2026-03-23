@@ -1,0 +1,634 @@
+:root {
+  --bg: #f3ede2;
+  --panel: rgba(255, 251, 245, 0.9);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --text: #1f1a16;
+  --muted: #6c655f;
+  --line: rgba(48, 38, 28, 0.1);
+  --accent: #1f4d5d;
+  --accent-soft: rgba(31, 77, 93, 0.12);
+  --safe: #3d7c58;
+  --low: #a5751f;
+  --medium: #c7651f;
+  --high: #b13c26;
+  --shadow: 0 20px 44px rgba(34, 25, 18, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(31, 77, 93, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(177, 60, 38, 0.14), transparent 26%),
+    linear-gradient(180deg, #f8f4ee 0%, #ede5d8 100%);
+}
+
+.bg-orb {
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.orb-a {
+  left: -80px;
+  top: -90px;
+  background: rgba(31, 77, 93, 0.18);
+}
+
+.orb-b {
+  right: -80px;
+  top: 30%;
+  background: rgba(177, 60, 38, 0.14);
+}
+
+.orb-c {
+  left: 28%;
+  bottom: -120px;
+  background: rgba(61, 124, 88, 0.12);
+}
+
+.shell {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 20px 56px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(38px, 7vw, 74px);
+  line-height: 0.95;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.subtitle {
+  max-width: 780px;
+  margin: 14px 0 0;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.session-bar {
+  min-width: 220px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-chip {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.text-button {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+#appRoot {
+  display: grid;
+  gap: 18px;
+}
+
+.auth-grid,
+.dashboard-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.auth-grid {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.dashboard-grid {
+  grid-template-columns: 320px minmax(0, 1.25fr) 360px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.panel-strong {
+  background: var(--panel-strong);
+}
+
+.panel h2,
+.panel h3,
+.panel h4 {
+  margin: 0;
+}
+
+.panel-header {
+  margin-bottom: 18px;
+}
+
+.panel-header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.stack,
+.form-stack,
+.card-stack,
+.notification-list,
+.timeline-list,
+.info-list {
+  display: grid;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span,
+.meta,
+.panel-note,
+.empty-state {
+  color: var(--muted);
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(31, 26, 22, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: white;
+}
+
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.secondary {
+  background: rgba(31, 77, 93, 0.1);
+  color: var(--accent);
+}
+
+.danger {
+  background: rgba(177, 60, 38, 0.12);
+  color: var(--high);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.patient-map {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.map-placeholder {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  background: rgba(31, 77, 93, 0.06);
+  color: var(--muted);
+}
+
+.map-marker-label {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(177, 60, 38, 0.9);
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 8px 16px rgba(177, 60, 38, 0.18);
+}
+
+.hero-card {
+  min-height: 100%;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kpi {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+}
+
+.kpi strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.card,
+.notification-card,
+.ride-card,
+.patient-card,
+.summary-card,
+.event-card,
+.metric-card,
+.status-card {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+}
+
+.metric-grid,
+.status-grid,
+.summary-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.metric-grid,
+.summary-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.status-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metric-card strong,
+.status-card strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.road-stage {
+  position: relative;
+  min-height: 330px;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(35, 43, 47, 0.12), rgba(35, 43, 47, 0.04)),
+    linear-gradient(180deg, #455560 0%, #1f2932 100%);
+}
+
+.lane::before,
+.lane::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 246, 209, 0.9) 0 18px,
+      transparent 18px 34px
+    );
+}
+
+.lane.left::before {
+  left: 33%;
+}
+
+.lane.right::after {
+  right: 33%;
+}
+
+.rider {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(236, 242, 245, 0.95);
+  color: #12232a;
+  font-weight: 700;
+}
+
+.road-overlay {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: white;
+}
+
+.overlay-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+}
+
+.target {
+  position: absolute;
+  min-width: 94px;
+  transform: translateX(-50%);
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+}
+
+.target.left {
+  left: 33%;
+}
+
+.target.center {
+  left: 50%;
+}
+
+.target.right {
+  left: 67%;
+}
+
+.target.car,
+.target.van {
+  background: linear-gradient(135deg, #cc5e37, #762317);
+}
+
+.target.scooter {
+  background: linear-gradient(135deg, #936a19, #5c430d);
+}
+
+.target.bike {
+  background: linear-gradient(135deg, #318069, #173f36);
+}
+
+.glasses-panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(31, 77, 93, 0.08);
+}
+
+.glasses-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 140px;
+}
+
+.lens {
+  width: 170px;
+  height: 86px;
+  border: 6px solid rgba(18, 35, 42, 0.82);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.bridge {
+  width: 42px;
+  height: 8px;
+  background: rgba(18, 35, 42, 0.82);
+}
+
+.hud {
+  position: absolute;
+  top: 22px;
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  opacity: 0;
+  border: 3px solid transparent;
+  transition: opacity 0.18s ease;
+}
+
+.hud.left {
+  left: 68px;
+}
+
+.hud.center {
+  left: calc(50% - 40px);
+}
+
+.hud.right {
+  right: 68px;
+}
+
+.hud.active {
+  opacity: 1;
+}
+
+.hud.low {
+  border-color: var(--low);
+  box-shadow: 0 0 0 8px rgba(165, 117, 31, 0.15);
+}
+
+.hud.medium {
+  border-color: var(--medium);
+  box-shadow: 0 0 0 10px rgba(199, 101, 31, 0.16);
+}
+
+.hud.high {
+  border-color: var(--high);
+  box-shadow: 0 0 0 12px rgba(177, 60, 38, 0.2);
+}
+
+.alert-banner {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.alert-level {
+  min-width: 96px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 800;
+  background: white;
+}
+
+.alert-level.safe {
+  color: var(--safe);
+}
+
+.alert-level.low {
+  color: var(--low);
+}
+
+.alert-level.medium {
+  color: var(--medium);
+}
+
+.alert-level.high {
+  color: var(--high);
+}
+
+.event-card.low {
+  border-left: 6px solid var(--low);
+}
+
+.event-card.medium {
+  border-left: 6px solid var(--medium);
+}
+
+.event-card.high {
+  border-left: 6px solid var(--high);
+}
+
+.notification-card.unread {
+  border-left: 6px solid var(--accent);
+}
+
+.list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(31, 77, 93, 0.1);
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.toast-host {
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  z-index: 50;
+  display: grid;
+  gap: 10px;
+}
+
+.toast {
+  width: min(340px, calc(100vw - 36px));
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(22, 32, 37, 0.94);
+  color: white;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+}
+
+.toast strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.two-col {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1220px) {
+  .dashboard-grid,
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .topbar {
+    flex-direction: column;
+  }
+
+  .hero-kpis,
+  .metric-grid,
+  .summary-grid,
+  .status-grid,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-map {
+    min-height: 260px;
+  }
+}
